@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login page</title>
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500&family=Roboto:ital,wght@0,100;0,300;0,500;1,100&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../Css/Login.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="BG">
+            <img class="mainBG" src="../Assets/Bg.png" srcset="../Assets/Bg.png 2x" alt="BG">
+            <div class="BG-2">
+                <div>
+                    <img src="../Assets/S_geolocation.png" srcset="../Assets/S_geolocation.png 2x" alt="BG">
+                    <img src="../Assets/S_community.png" srcset="../Assets/S_community.png 2x" alt="BG">
+                </div>
+            </div>
+
+        </div>
+
+        <form>
+            <div class="loginTitle">
+                <h3>Đăng Nhập</h3>
+                <p>Xin chào, Admin!</p>
+            </div>
+            <div class="mb-3">
+                <div class="boxCheck">
+                    <label for="email" class="form-label">Email</label>
+                    <div>
+                        <p>Opp có vẻ sai email rùi !</p>
+                    </div>
+                </div>
+                <input type="email" class="form-control" id="email">
+                <!-- <div id="emailHelp" class="form-text">Chúng tôi k</div> -->
+            </div>
+            <div class=" mb-3">
+                <div class="boxCheck">
+                    <label for="password" class="form-label">Password</label>
+                    <div>
+                        <p>Opp có vẻ sai pass rùi !</p>
+                    </div>
+                </div>
+                <input type="password" class="form-control" id="password" value="srcset">
+                <span id="unHindPass"><i class="fa-regular fa-eye-slash"></i></span>
+            </div>
+            <!-- <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div> -->
+            <div class="button">
+                <button id="submitButton" type="submit" class="btn btn-primary" style=" padding: 14px 24px; border-radius: 6px;
+                background: #00A3FF; border: none;">Đăng Nhập để vào trang Admin</button>
+            </div>
+
+        </form>
+
+    </div>
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/eca9d5c25e.js" crossorigin="anonymous"></script>
+    <!-- scripts -->
+    <script src="../scripts/login.js"></script>
+    <script src="../scripts/ChangeTarget.js"></script>
+</body>
+
+</html>

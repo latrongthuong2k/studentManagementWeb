@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassListPage</title>
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;500&family=Noto+Sans+JP:wght@300;500&family=Roboto:ital,wght@0,100;0,300;0,500;1,100&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../Css/dashboard.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Control -->
+        <section class="control">
+            <div class="head-Control">
+                <img src="../Assets/Ellipse 6.png" srcset="../Assets/Ellipse 6.png 2x" alt="">
+                <p>Rikkei Academy</p>
+            </div>
+            <span class="line"></span>
+            <div id="body-Control">
+                <div class="group">
+                    <div id="DashBoard" class="item">
+                        <!-- <img src="./assets/icon1.png" srcset="./assets/icon1.png 2x" alt="icon"> -->
+                        <div class="customIcon2">
+                            <i class="fa-regular fa-rectangle-list"></i>
+                        </div>
+                        <p class="text">Dashboard</p>
+                        <i class="fa-solid fa-chevron-right customIcon"></i>
+                    </div>
+                    <div id="Course" class="item">
+                        <!-- <img src="./assets/    icon2.png" srcset="./assets/icon2.png 2x" alt="icon"> -->
+                        <div class="customIcon2">
+                            <i class="fa-regular fa-file-code"></i>
+                        </div>
+                        <p class="text">Quản lý lớp học</p>
+                        <i class="fa-solid fa-chevron-right customIcon"></i>
+                    </div>
+                    <div id="Class" class="item">
+                        <!-- <img src="./assets/teacher.png" srcset="./assets/teacher.png 2x" alt="icon"> -->
+                        <div class="customIcon2">
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+                        <p class="text">Quản lý lớp học</p>
+                        <i class="fa-solid fa-chevron-right customIcon"></i>
+                    </div>
+                    <div id="Students" class="item">
+                        <!-- <img src="./assets/qltkh.png" srcset="./assets/qltkh.png 2x" alt="icon"> -->
+                        <div class="customIcon2">
+                            <i class="fa-regular fa-address-card"></i>
+                        </div>
+                        <p class="text">Quản lý sinh viên </p>
+                        <i class="fa-solid fa-chevron-right customIcon"></i>
+                    </div>
+                    <div id="Users" class="item">
+                        <!-- <img src="./assets/qltkh.png" srcset="./assets/qltkh.png 2x" alt="icon"> -->
+                        <div class="customIcon2">
+                            <i class="fa-solid fa-users-rectangle"></i>
+                        </div>
+                        <p class="text">Quản lý tài khoản </p>
+                        <i class="fa-solid fa-chevron-right customIcon"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="content-Header">
+                <div>
+                    <p>Học là quá trình không ngừng nghỉ. Được học và làm mà phát triển đó mới là lẽ sống.</p>
+                </div>
+                <div class="group-right">
+                    <div class="Notification">
+                        <i class="fa-regular fa-bell fa-2xl"></i>
+                        <div class="news"></div>
+                    </div>
+                    <button id="logOutBtn">Đăng Xuất</button>
+                </div>
+            </div>
+            <!-- Render Point -->
+            <!-- ---------------------------------------------- -->
+            <div id="content-Body-2">
+                <div class="Box-1">
+                    <div>
+                        <p class="A">RikkeiAcademy<span class="slack">/</span><span class="B"></span>
+                            <span class="slack">/</span><span class="C"></span>
+                        </p>
+                    </div>
+                    <div class="btn-group">
+                        <div>
+                            <select id="select-course" class="addBtn">
+                                <!-- Option sẽ được thêm tự động bằng JavaScript -->
+                            </select>
+                        </div>
+                        <button type="button" class="addBtn" id="addBtn">Thêm lớp học</button>
+                    </div>
+                </div>
+                <div class="Box-2">
+                    <div class="findBox">
+                        <div class="findGlass"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <input type="text" id="FindInfo" placeholder="Nhập vào đây để tìm kiếm">
+                    </div>
+                    <div class="nav">
+                        <!-- emptyPage -->
+                        <div id="emptyTable" style="display: none;">
+                            <img src="../Assets/noNotification.png" srcset="../Assets/noNotification.png 2x" alt="">
+                            <h3>Không có <span>sinh viên</span> nào :(</h3>
+                            <p>Hãy thêm sinh viên vào <span></span> Rikkei Academy nào <3 </p>
+                        </div>
+                        <div id="renderedTable" class="renderedTable"
+                            style=" width: 100%; height: 70vh; margin-top: 15px;">
+                            <div
+                                style="display: flex; height: 100%; flex-direction: column; justify-content: space-between;">
+                                <table id="tableBody">
+                                    <!-- studentsPage -->
+                                    <thead>
+                                        <tr>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        STT
+                                                    </a>
+
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" onclick="sortFunc()" href="#">Sắp
+                                                                xếp tăng dần</a></li>
+                                                        <li><a class="dropdown-item" onclick="sortFunc(-1)" href="#">Sắp
+                                                                xếp giảm dần</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                            <td>Mã lớp</td>
+                                            <td>Tên lớp</td>
+                                            <td>Giảng viên</td>
+                                            <td>Mô tả</td>
+                                            <td>Sỉ số</td>
+                                            <td>Trạng thái</td>
+                                            <td style=" text-align: center;">Action</td>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                    <!-- classPage -->
+
+                                    <!-- coursePage -->
+
+                                    <!-- usersAccountPage -->
+
+                                </table>
+                                <div id="pagination" class="pagination"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ---------------------------------------------- -->
+        </section>
+        <aside>
+            <!-- Bản popUp Inputs -->
+            <div id="boardAdd" style="display: none;">
+                <div class="coverBG" style="display: none;"></div>
+                <div class="boxBody hidden" style="position: absolute;">
+                    <form id="addForm">
+                        <!-- form -->
+
+                    </form>
+                </div>
+            </div>
+            <!-- Modal bootstrap -->
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title fs-5" id="exampleModalLabel">Xoá sinh viên</h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Xin nhắc lại, bạn có thực sự muốn xóa sinh viên <span class="nameStudent"></span> không ?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="No" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Không</button>
+                            <button type="button" id="Yes" class="btn btn-success" data-bs-dismiss="modal">Có</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal 2 -->
+            <div class="modal fade" id="exampleModal-2" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title fs-5" id="exampleModalLabel"></h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="No" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Không</button>
+                            <button type="button" id="Yes" class="btn btn-success" data-bs-dismiss="modal">Có</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- contact -->
+        <div class="contact">
+            <i class="fa-solid fa-headphones-simple"></i>
+            <p>Liên hệ thêm</p>
+            <i class="fa-solid fa-chevron-up"></i>
+        </div>
+    </div>
+    <footer>
+        <div class="Foot">
+            <p>Copyright Rikkei Academy @2023</p>
+        </div>
+
+    </footer>
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/eca9d5c25e.js" crossorigin="anonymous"></script>
+
+
+    <!----------- script Load ------------>
+    <!-- Base -->
+    <script src="../scripts/changeTarget.js"></script>
+    <!-- Level 1 -->
+    <script src="../scripts/Main.js"></script>
+    <script src="../scripts/loadTarget.js"></script>
+    <!-- level 2 -->
+    <script src="../scripts/SearchInfo.js"></script>
+    <script src="../scripts/submitForm.js"></script>
+    <script src="../scripts/ControlerNav.js"></script>
+    <script src="../scripts/RenderCatalog.js"></script>
+    <script src="../scripts/ListManager.js"></script>
+    <!------------------------------------>
+
+
+    <!-- Hàm gọi đến khi load event -->
+    <script src="../scripts/popUp.js"></script>
+    <script src="../scripts/CheckInputClass.js"></script>
+    <script src="../scripts/CheckInputCourse.js"></script>
+    <script src="../scripts/CheckInputStudents.js"></script>
+    <script src="../scripts/DeleteFunc.js"></script>
+    <script src="../scripts/EditInforFunc.js"></script>
+    <!--  -->
+    <script src="../scripts/Sort.js"></script>
+    <script src="../scripts/FormatFunc.js"></script>
+</body>
+
+</html>

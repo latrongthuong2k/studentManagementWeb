@@ -1,0 +1,183 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    padding: 0 !important;
+    max-width: 1500px;
+    width: 100%;
+    height: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+.BG {
+    z-index: 0;
+    position: absolute;
+    top: 370px;
+}
+
+.BG-2 {
+    display: none;
+
+    /* position: absolute; */
+}
+
+@media (max-width: 320px) {}
+
+@media (min-width: 321px) and (max-width: 768px) {
+    .BG .mainBG {
+        display: none;
+    }
+
+    .BG-2 {
+        display: block;
+        position: relative;
+        bottom: 400px;
+    }
+
+    .BG-2 div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 450px;
+        align-items: center;
+    }
+
+    .BG-2 div img {
+        width: 60%;
+        height: 60%;
+    }
+}
+
+form {
+    z-index: 1;
+    width: 480px;
+    height: 465px;
+    padding: 48px 49px 70px 50px;
+    border-radius: 9px;
+    box-shadow: 0px 0px 40px 0px rgb(223, 223, 223);
+    /* margin: auto auto; */
+}
+
+form label {
+    width: 90px;
+    margin-bottom: 0 !important;
+}
+
+.mb-3 input {
+    border-radius: 6px;
+    background: #F5F8FA;
+    width: 380px;
+    height: 54px;
+}
+
+.mb-3 {
+    margin-bottom: 20px !important;
+}
+
+.loginTitle {
+    text-align: center;
+}
+
+.loginTitle h3 {
+    margin-bottom: 10px !important;
+}
+
+.loginTitle p {
+    font-size: 18px;
+    color: #B5B5C3;
+    font-weight: 500;
+    margin-bottom: 30px !important;
+}
+
+.loginTitle h3 {
+    color: #181C32;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.button {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.boxCheck {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.boxCheck div {
+    visibility: hidden;
+    display: flex;
+    width: 200px;
+    justify-content: center;
+    padding: 5px 8px;
+    margin-bottom: 10px;
+    align-items: center;
+    border-radius: 15px;
+    color: white;
+    background-color: rgb(247, 88, 88);
+
+
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+.visible {
+    visibility: visible;
+    animation: slideIn 0.4s;
+}
+
+.hidden {
+    visibility: hidden;
+    animation: slideOut 0.4s;
+
+}
+
+.boxCheck p {
+    margin-bottom: 0 !important;
+}
+
+#unHindPass {
+    position: relative;
+    cursor: pointer;
+}
+
+#unHindPass i {
+    position: absolute;
+    left: 345px;
+    bottom: 18px;
+}
