@@ -36,7 +36,7 @@ function submitForm(action) {
                     return;
                 }
                 course.Status = selectedStatus.value;
-                // pushOrModify(course, 'CourseId');    
+                pushOrModify(course, 'CourseId');
 
                 break;
             case CLASS_TARGET:
