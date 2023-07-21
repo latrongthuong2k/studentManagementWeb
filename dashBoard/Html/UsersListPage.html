@@ -94,7 +94,6 @@
                 <div class="Box-1">
                     <div>
                         <p class="A">RikkeiAcademy<span class="slack">/</span><span class="B"></span>
-                            <span class="slack">/</span><span class="C"></span>
                         </p>
                     </div>
                 </div>
@@ -135,7 +134,7 @@
                                             <td>Email </td>
                                             <td>Mật khẩu </td>
                                             <td>Họ và tên </td>
-                                            <td>Trạng thái </td>
+                                            <td>Trạng thái khoá </td>
                                             <td style=" text-align: center;">Action</td>
                                         </tr>
                                     </thead>
@@ -181,27 +180,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            Xin nhắc lại, bạn có thực sự muốn xóa sinh viên <span class="nameStudent"></span> không ?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" id="No" class="btn btn-secondary"
-                                data-bs-dismiss="modal">Không</button>
-                            <button type="button" id="Yes" class="btn btn-success" data-bs-dismiss="modal">Có</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal 2 -->
-            <div class="modal fade" id="exampleModal-2" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="modal-title fs-5" id="exampleModalLabel"></h3>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-
+                            Bạn có chắc thực hiện hành động <span class="nameStudent"></span> này không ?
                         </div>
                         <div class="modal-footer">
                             <button type="button" id="No" class="btn btn-secondary"
@@ -237,15 +216,13 @@
     <script src="../scripts/Main.js"></script>
     <script src="../scripts/loadTarget.js"></script>
     <!-- level 2 -->
+    <script src="../scripts/RenderCatalog.js"></script>
     <script src="../scripts/SearchInfo.js"></script>
     <script src="../scripts/ControlerNav.js"></script>
-    <script src="../scripts/RenderCatalog.js"></script>
+    <script src="../scripts/UserAction.js"></script>
 
     <!------------------------------------>
-
-
     <!-- Hàm gọi đến khi load event -->
-    <script src="../scripts/UserAction.js"></script>
     <!--  -->
     <script src="../scripts/Sort.js"></script>
     <script src="../scripts/FormatFunc.js"></script>

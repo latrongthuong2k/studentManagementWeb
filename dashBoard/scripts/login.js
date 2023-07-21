@@ -1,48 +1,53 @@
-// userList
-var userSystems = [
-    { email: 'latrongthuong7@gmail.com', password: 'Thuong191020' },
-];
-localStorage.setItem('admin', JSON.stringify(userSystems));
+var isLoginAccount = { email: '', password: '' };
+const dataList = JSON.parse(localStorage.getItem(accountManager));
 function CheckAdmin(e) {
     e.preventDefault();
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
     var boxChecks = document.querySelectorAll('.boxCheck');
-    var admins = JSON.parse(localStorage.getItem('admin'));
-    admins.forEach(admin => {
+    //  account đã đăng ký ở bên scripts changeTarget 
+    dataList.forEach(account => {
         // push và đi qua trang dashboard
-        if (admin.email === email && admin.password === password) {
-            localStorage.setItem('userSystems', JSON.stringify(userSystems));
+        if (account.email === email && account.password === password && account.isLocked === false) {
+            isLoginAccount.email = account.email;
+            isLoginAccount.password = account.password;
+            localStorage.setItem('isLoginAccount', JSON.stringify(isLoginAccount));
             window.location.href = "../Html/DashBoard.html";
             currentTarget = 'DashBoard';
             localStorage.setItem('currentTarget', JSON.stringify(currentTarget));
+        }
+        else if (account.email === email && account.password === password && account.isLocked === true) {
+            boxChecks[0].querySelector('p').innerHTML = 'Tài khoảng bị khoá, vui lòng liên hệ cho Admin để mở khoá !'
+            boxChecks.forEach(box => {
+                box.querySelector('div').style.width = '300px'
+                box.querySelector('div').classList.remove('hidden');
+                box.querySelector('div').classList.add('visible');
+            });
         }
         // khi không nhập
         else if (email === "" && password === "") {
             boxChecks[0].querySelector('p').innerHTML = 'Email không được để trống !'
             boxChecks[1].querySelector('p').innerHTML = 'Pass không được để trống !'
-            boxChecks.forEach(box => {
-                box.querySelector('div').style.width = '250px'
-                box.querySelector('div').classList.remove('hidden');
-                box.querySelector('div').classList.add('visible');
-            })
+            boxCheckFunc(boxChecks);
         } // khi nhập sai
-        else {
+        else if (account.email !== email && account.password !== password) {
             boxChecks[0].querySelector('p').innerHTML = 'Opp có vẻ sai email rùi !'
             boxChecks[1].querySelector('p').innerHTML = 'Opp có vẻ sai pass rùi !'
-            boxChecks.forEach(box => {
-                box.querySelector('div').style.width = '200px'
-                box.querySelector('div').classList.remove('hidden');
-                box.querySelector('div').classList.add('visible');
-            })
+            boxCheckFunc(boxChecks);
         }
     });
 }
+function boxCheckFunc(listElement) {
+    listElement.forEach(box => {
+        box.querySelector('div').style.width = '240px'
+        box.querySelector('div').classList.remove('hidden');
+        box.querySelector('div').classList.add('visible');
+    })
+}
 function checkLogin() {
-    if (localStorage.getItem('userSystems') == null)
+    if (localStorage.getItem('isLoginAccount') == null)
         return;
-    var data = JSON.parse(localStorage.getItem('userSystems')); // list Users
-    if (data != null) {
+    else {
         currentTarget = 'DashBoard';
         window.location.href = "../Html/DashBoard.html";
         // 

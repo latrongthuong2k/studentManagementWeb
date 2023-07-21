@@ -525,11 +525,11 @@ h2 {
     margin-right: 10px;
 }
 
-.actionUser button:nth-child(1) {
+.actionUser button:nth-child(2) {
     color: rgb(0, 166, 17);
 }
 
-.actionUser button:nth-child(2) {
+.actionUser button:nth-child(1) {
     color: rgb(255, 47, 47);
 }
 

@@ -1,80 +1,73 @@
-//  kiểm tra ID có tồn tại hay chưa và ghi đè 
-function CheckExistToOverride(targetList, targetObj) {
-    targetList.forEach((oldObj, index) => {
-        switch (currentTarget) {
-            case 'studentList':
-                if (oldObj.studentID === targetObj.studentID) {
-                    targetList[index] = targetObj;
-                }
-                break;
-            case 'courseList':
-                if (oldObj.CourseId === targetObj.CourseId) {
-                    targetList[index] = targetObj;
-                }
-                break;
-            case 'classList':
-                if (oldObj.ClassId === targetObj.ClassId) {
-                    targetList[index] = targetObj;
-                }
-                break;
-            case 'userSystems':
-                if (oldObj.email === targetObj.email) {
-                    targetList[index] = targetObj;
-                }
-                break;
-            case 'Dashboard':
-                break;
-        }
-    });
-    localStorage.setItem(currentTarget, JSON.stringify(targetList));
-}
+
 // xoá theo đối tượng list đã lọc
-function findIndexAndDelete(listItems, targetId) {
+function findIndexAndDelete(targetList, targetId) {
+    managementList = JSON.parse(localStorage.getItem('managementList'));
     switch (currentTarget) {
-        case 'studentList':
-            var catalogIndex = listItems.findIndex(function (catalog) {
-                return catalog.studentID === targetId;
-            });
-            if (catalogIndex != -1) {
-                listItems.splice(catalogIndex, 1);
-            } else {
-                console.log('Danh mục không tồn tại.');
-            }
-            break;
-        case 'courseList':
-            var catalogIndex = listItems.findIndex(function (catalog) {
+        case COURSE_TARGET:
+            var catalogIndex = targetList.findIndex(function (catalog) {
                 return catalog.CourseId === targetId;
             });
             if (catalogIndex != -1) {
-                listItems.splice(catalogIndex, 1);
-            } else {
+                targetList.splice(catalogIndex, 1);
+                // courseList độc lập
+                localStorage.setItem(currentTarget, JSON.stringify(targetList));
+                // đẩy về courseList chính
+                list = localStorage.getItem(COURSE_TARGET);
+                managementList = list
+                courseObj = list;
+            }
+            else {
                 console.log('Danh mục không tồn tại.');
             }
             break;
-        case 'classList':
-            var catalogIndex = listItems.findIndex(function (catalog) {
+        case CLASS_TARGET:
+            var catalogIndex = targetList.findIndex(function (catalog) {
                 return catalog.ClassId === targetId;
             });
             if (catalogIndex != -1) {
-                listItems.splice(catalogIndex, 1);
+                targetList.splice(catalogIndex, 1);
+                managementList.forEach(courseObj => {
+                    if (courseObj.CourseId === targetList.CourseId) {
+                        list = localStorage.getItem(CLASS_TARGET);
+                        courseObj.Class = list;
+                    }
+                });
             } else {
                 console.log('Danh mục không tồn tại.');
             }
             break;
-        case 'userSystems':
-            var catalogIndex = listItems.findIndex(function (catalog) {
+        case STUDENT_TARGET:
+            var catalogIndex = targetList.findIndex(function (catalog) {
+                return catalog.studentID === targetId;
+            });
+            if (catalogIndex != -1) {
+                targetList.splice(catalogIndex, 1);
+                managementList.forEach(courseObj => {
+                    if (courseObj.CourseId === targetList.CourseId) {
+                        courseObj.forEach(classObj => {
+                            if (classObj.ClassId == targetList.ClassId) {
+                                list = localStorage.getItem(STUDENT_TARGET);
+                                classObj = list;
+                            }
+                        });
+                    }
+                });
+            } else {
+                console.log('Danh mục không tồn tại.');
+            }
+            break;
+        case accountManager:
+            var catalogIndex = targetList.findIndex(function (catalog) {
                 return catalog.email === targetId;
             });
             if (catalogIndex != -1) {
-                listItems.splice(catalogIndex, 1);
+                targetList.splice(catalogIndex, 1);
             } else {
                 console.log('Danh mục không tồn tại.');
             }
             break;
-        case 'DashBoard':
-            break;
     }
-    localStorage.setItem(currentTarget, JSON.stringify(listItems));
+    localStorage.setItem('managementList', JSON.stringify(managementList));
 };
 
 

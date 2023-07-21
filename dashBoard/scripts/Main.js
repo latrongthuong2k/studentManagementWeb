@@ -2,23 +2,28 @@
 var COURSE_TARGET = 'courseList';
 //
 var CLASS_TARGET = 'classList';
-var USER_TARGET = 'userSystems';
 var STUDENT_TARGET = 'studentList';
 var DASHBOARD = 'DashBoard';
 //
 var CURRENT_TARGET_KEY = 'currentTarget';
 
+var _managementList = 'managementList';
+
 // Main data local variables
 // nameTarget
 var currentTarget = JSON.parse(localStorage.getItem(CURRENT_TARGET_KEY)) ? JSON.parse(localStorage.getItem(CURRENT_TARGET_KEY)) : '';
-// var currentTargetList = JSON.parse(localStorage.getItem(currentTarget)) ? JSON.parse(localStorage.getItem(currentTarget)) : [];
 
-// listTarget
-
-
+// Main List
+var managementList = JSON.parse(localStorage.getItem(_managementList)) ? JSON.parse(localStorage.getItem(_managementList)) : []
+// sao chép courseList qua
+managementList = courseList;
+// tạo Obj lưu lúc chọn course
+var selectedOptionCourse = {};
+// lấy classObj từ course chọn , thực hiện ở bên script ListManager
+var selectedOptionClassOfCourse = [];
 // đăng xuất button
 document.getElementById("logOutBtn").addEventListener("click", () => {
-    localStorage.removeItem('userSystems');
+    localStorage.removeItem('isLoginAccount');
     window.location.href = "../Html/index.html";
 });
 
@@ -47,6 +52,7 @@ function loadEmptyOrList() {
     var emptyTable = document.getElementById("emptyTable");
     var renderedTable = document.getElementById("renderedTable");
     var currentTargetList = JSON.parse(localStorage.getItem(currentTarget)) ? JSON.parse(localStorage.getItem(currentTarget)) : [];
+
     if (currentTargetList.length === 0) {
         emptyTable.style.display = "block";
         renderedTable.style.display = "none";

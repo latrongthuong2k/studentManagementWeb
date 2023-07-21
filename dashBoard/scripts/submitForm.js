@@ -29,6 +29,7 @@ function submitForm(action) {
     if (action === 'submit') {
         switch (currentTarget) {
             case COURSE_TARGET:
+                managementList = JSON.parse(localStorage.getItem('managementList')) ? JSON.parse(localStorage.getItem('managementList')) : []
                 inputGlobalClass.forEach(element => {
                     if (checkInputCourse(element, 'checkEach') === false) { return }
                 });
@@ -36,36 +37,61 @@ function submitForm(action) {
                     return;
                 }
                 course.Status = selectedStatus.value;
-                pushOrModify(course, 'CourseId');
-
+                if (pushOrModify(course, 'CourseId') == true) {
+                    managementList.push(course);
+                } else {
+                    // edit courseList in management list
+                    for (let i = 0; i < managementList.length; i++) {
+                        if (managementList[i].CourseId == course.CourseId) {
+                            courseList = JSON.parse(localStorage.getItem(COURSE_TARGET))
+                            managementList[i] = courseList;
+                            break; // Thoát khỏi vòng lặp sau khi thay đổi giá trị
+                        }
+                    }
+                }
                 break;
             case CLASS_TARGET:
+                managementList = JSON.parse(localStorage.getItem('managementList')) ? JSON.parse(localStorage.getItem('managementList')) : []
                 var Descriptions = document.getElementById('descriptions');
                 var LecturerName = document.getElementById('LecturerName');
-                inputGlobalClass.forEach(element => {
-                    if (checkInputClass(element, 'checkEach') == false) { return }
+                inputGlobalClass.forEach(htmlElementId => {
+                    if (checkInputClass(htmlElementId, 'checkEach') == false) { return }
                 })
                 classRoom.Lecturer = LecturerName.value;
                 classRoom.Status = selectedStatus.value;
                 classRoom.Descriptions = Descriptions.value;
-                pushOrModify(classRoom, 'ClassId');
 
-                // đưa vào mảng lớn 
-                // const courseList = JSON.parse(localStorage.getItem('courseList'));
-                // const selectedCourseId = document.getElementById('select-course').value;
-                // const selectedCourse = courseList.find(course => course.CourseId === selectedCourseId);
-                // const classOfCourse = selectedCourse.Class;
-                // classOfCourse.push(JSON.parse(localStorage.getItem(currentTarget) ? JSON.parse(localStorage.getItem(currentTarget)) : []));
-                // localStorage.setItem(COURSE_TARGET, JSON.stringify(classOfCourse));
+                if (pushOrModify(classRoom, 'ClassId') == true)
+                /* check true cũng đồng nghĩa dã push classRoom vào classList rồi, giờ đẩy thêm 
+                obj class đó vào managementList.course (cụ thể) nữa và lưu lại
+                */ {
+                    for (let i = 0; i < managementList.length; i++) {
+                        if (managementList[i].CourseId == selectedOptionCourse.CourseId) {
+                            managementList[i].Class.push(classRoom);
+                            break;
+                        }
+                    }
+                }
+                else {
+                    // edit classList in management.course list
+                    for (let i = 0; i < managementList.length; i++) {
+                        if (managementList[i].CourseId == selectedOptionCourse.CourseId) {
+                            classList = JSON.parse(localStorage.getItem(CLASS_TARGET));
+                            managementList[i].Class = classList;
+                            break;
+                        }
+                    }
+                }
                 break;
             case STUDENT_TARGET:
+                debugger
+                managementList = JSON.parse(localStorage.getItem('managementList')) ? JSON.parse(localStorage.getItem('managementList')) : []
                 var gender = document.querySelector('input[name="gender"]:checked').value;
                 //
-                inputGlobalClass.forEach(element => {
-
-                    if (element.id !== 'descriptions' || element.id !== 'gender') {
+                inputGlobalClass.forEach(htmlElementId => {
+                    if (htmlElementId.id !== 'descriptions' || htmlElementId.id !== 'gender') {
                         // check each để lấy dữ liệu
-                        if (checkInputStudent(element, 'checkEach') == false) { return }
+                        if (checkInputStudent(htmlElementId, 'checkEach') == false) { return }
                     }
                 });
                 //
@@ -76,11 +102,43 @@ function submitForm(action) {
                 newInformationStudent.Descriptions = descriptions;
                 newInformationStudent.Gender = gender;
                 newInformationStudent.Status = selectedStatus.value;
-                pushOrModify(newInformationStudent, 'studentID');
+
+                if (pushOrModify(newInformationStudent, 'studentID') == true)
+                /* check true cũng đồng nghĩa dã push student vào studentList rồi, giờ đẩy thêm 
+                obj class đó vào managementList.course.class nữa và lưu lại
+                */ {
+                    for (let i = 0; i < managementList.length; i++) {
+                        if (managementList[i].CourseId == selectedOptionCourse.CourseId) {
+                            for (let j = 0; j < managementList[i].Class.length; j++) {
+                                if (managementList[i].Class[j].ClassId == selectedOptionClassOfCourse.ClassId) {
+                                    // studentList = JSON.parse(localStorage.getItem(STUDENT_TARGET))
+                                    managementList[i].Class[j].Students.push(newInformationStudent);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                else {
+                    // edit studentList in management.course.class list
+                    for (let i = 0; i < managementList.length; i++) {
+                        if (managementList[i].CourseId == selectedOptionCourse.CourseId) {
+                            for (let j = 0; j < managementList[i].Class.length; j++) {
+                                if (managementList[i].Class[j].ClassId == selectedOptionClassOfCourse.ClassId) {
+                                    studentList = JSON.parse(localStorage.getItem(STUDENT_TARGET))
+                                    managementList[i].Class[j].Students = studentList;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
                 break;
             case USER_TARGET:
                 break;
         }
+        // lưu lại
+        localStorage.setItem('managementList', JSON.stringify(managementList));
         // // vatidate trường Status ( đổi màu đỏ nếu không chọn )
         function func(selectedStatus) {
             if (selectedStatus.value == '') {
@@ -108,7 +166,6 @@ function submitForm(action) {
                 inValidFeelBackGlobal[i].style.display = 'none';
             }
             for (var i = 0; i < inputGlobalClass.length; i++) {
-                debugger
                 inputGlobalClass[i].style.backGroundColor = '';
                 inputGlobalClass[i].classList.remove('is-valid');
                 inputGlobalClass[i].classList.remove('is-invalid');
@@ -118,16 +175,20 @@ function submitForm(action) {
 
         //**** Lưu giá trị vào mảng
         // check trước là sửa hay push mới 
-        function pushOrModify(patternObject, targetId) {
+        function pushOrModify(patternObjectNewData, htmlElementId) {
+            isPushed = true;
             var currentTargetList = JSON.parse(localStorage.getItem(currentTarget)) ? JSON.parse(localStorage.getItem(currentTarget)) : [];
-            if (document.getElementById(targetId).readOnly === true) {
-                document.getElementById(targetId).readOnly = false;
-                CheckExistToOverride(currentTargetList, patternObject);
+            if (document.getElementById(htmlElementId).readOnly === true) {
+                document.getElementById(htmlElementId).readOnly = false;
+                CheckExistToOverride(currentTargetList, patternObjectNewData);
+                isPushed = false;
             } else {
-                currentTargetList.push(patternObject);
+                currentTargetList.push(patternObjectNewData);
                 localStorage.setItem(currentTarget, JSON.stringify(currentTargetList));
+                isPushed = true;
             }
             funcR();
+            return isPushed;
         }
         renderCatalogs();
         popOutForm();
@@ -153,5 +214,35 @@ function submitForm(action) {
     }
 };
 
+//  kiểm tra ID có tồn tại hay chưa và ghi đè 
+function CheckExistToOverride(targetList, patternObjectNewData) {
+    targetList.forEach((oldObj, index) => {
+        switch (currentTarget) {
+            case STUDENT_TARGET:
+                if (oldObj.studentID === patternObjectNewData.studentID) {
+                    targetList[index] = patternObjectNewData;
+                }
+                break;
+            case COURSE_TARGET:
+                if (oldObj.CourseId === patternObjectNewData.CourseId) {
+                    targetList[index] = patternObjectNewData;
+                }
+                break;
+            case CLASS_TARGET:
+                if (oldObj.ClassId === patternObjectNewData.ClassId) {
+                    targetList[index] = patternObjectNewData;
+                }
+                break;
+            case accountManager:
+                if (oldObj.email === patternObjectNewData.email) {
+                    targetList[index] = patternObjectNewData;
+                }
+                break;
+        }
+    });
+    debugger
+    localStorage.setItem(currentTarget, JSON.stringify(targetList));
+
+}
 // addEvent blur cho inputs
 checkInput();

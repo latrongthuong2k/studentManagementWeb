@@ -5,56 +5,59 @@ var textFix = document.querySelector('.B');
 var currentPage = 1;
 var catalogsPerPage = 10; // 10 đứa
 
-// if (currentTarget === 'courseList')
-renderCatalogs();
+if (currentTarget === 'courseList' || currentTarget === accountManager)
+    renderCatalogs();
 
 function renderCatalogs() {
     loadEmptyOrList();
     var currentTargetList = JSON.parse(localStorage.getItem(currentTarget)) ? JSON.parse(localStorage.getItem(currentTarget)) : [];
-    // target list truyền vào thì đã lấy dữ liệu từ local rồi 
-    // TODO: cho hiển thị emptyPage
-    var startIndex = (currentPage - 1) * catalogsPerPage;
-    var endIndex = startIndex + catalogsPerPage;
-    var catalogs = currentTargetList.slice(startIndex, endIndex);
-    var row = document.createElement('tr');
-
-    // tbody
-    var tBody = document.querySelector('#tableBody tbody');
-    if (tBody == null) return;
-
-    tBody.innerHTML = '';
-
-    catalogs.forEach(function (catalog, index) {
+    debugger
+    if (currentTargetList != []) {
+        // target list truyền vào thì đã lấy dữ liệu từ local rồi 
+        // TODO: cho hiển thị emptyPage
+        var startIndex = (currentPage - 1) * catalogsPerPage;
+        var endIndex = startIndex + catalogsPerPage;
+        var catalogs = currentTargetList.slice(startIndex, endIndex);
         var row = document.createElement('tr');
-        switch (currentTarget) {
-            case "Dashboard":
-                break;
-            case "courseList":
-                row.innerHTML = patternTbodyCourse(catalog, index);
-                break;
-            case "classList":
-                row.innerHTML = patternTbodyClass(catalog, index);
-                break;
-            case "studentList":
-                row.innerHTML = patternTbodyStudents(catalog, index);
-                break;
-            case "userSystems":
-                row.innerHTML = patternTbodyUser(catalog, index);
-                break;
-        }
-        tBody.appendChild(row);
-    });
-    //
-    renderPagination();
+
+        // tbody
+        var tBody = document.querySelector('#tableBody tbody');
+        if (tBody == null) return;
+
+        tBody.innerHTML = '';
+
+        catalogs.forEach(function (catalog, index) {
+            var row = document.createElement('tr');
+            switch (currentTarget) {
+                case COURSE_TARGET:
+                    row.innerHTML = patternTbodyCourse(catalog, index);
+                    break;
+                case CLASS_TARGET:
+                    row.innerHTML = patternTbodyClass(catalog, index);
+                    break;
+                case STUDENT_TARGET:
+                    row.innerHTML = patternTbodyStudents(catalog, index);
+                    break;
+                case accountManager:
+                    row.innerHTML = patternTbodyUser(catalog, index);
+                    break;
+            }
+            tBody.appendChild(row);
+        });
+        //
+        renderPagination(currentTargetList);
+    } else {
+        debugger
+    }
+
 }
 
 // render pagination ***
-function renderPagination() {
-    var currentTargetList = JSON.parse(localStorage.getItem(currentTarget)) ? JSON.parse(localStorage.getItem(currentTarget)) : [];
+function renderPagination(renderList) {
+    var renderList = JSON.parse(localStorage.getItem(currentTarget)) ? JSON.parse(localStorage.getItem(currentTarget)) : [];
     var startIndex = (currentPage - 1) * catalogsPerPage;
     var endIndex = startIndex + catalogsPerPage;
-    var catalogs = currentTargetList.slice(startIndex, endIndex);
-    var totalPages = Math.ceil(currentTargetList.length / catalogsPerPage);
+    var totalPages = Math.ceil(renderList.length / catalogsPerPage);
     var pagination = document.querySelector('#pagination');
     pagination.innerHTML = '';
 
@@ -150,6 +153,5 @@ function renderPagination() {
     }
 }
 
-// hàm check để hiển thị trường empty hoặc renderTable
 
 

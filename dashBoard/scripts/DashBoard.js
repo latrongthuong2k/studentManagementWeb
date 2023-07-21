@@ -4,10 +4,10 @@ var currentTarget = JSON.parse(localStorage.getItem('currentTarget')) ? JSON.par
 upDateNumberData();
 
 function upDateNumberData() {
-    courseList = JSON.parse(localStorage.getItem('courseList')) ? JSON.parse(localStorage.getItem('courseList')) : [];
-    classList = JSON.parse(localStorage.getItem('classList')) ? JSON.parse(localStorage.getItem('classList')) : [];
-    studentList = JSON.parse(localStorage.getItem('studentList')) ? JSON.parse(localStorage.getItem('studentList')) : [];
-    userSystems = JSON.parse(localStorage.getItem('userSystems')) ? JSON.parse(localStorage.getItem('userSystems')) : [];
+    courseList = JSON.parse(localStorage.getItem(COURSE_TARGET)) ? JSON.parse(localStorage.getItem(COURSE_TARGET)) : [];
+    classList = JSON.parse(localStorage.getItem(CLASS_TARGET)) ? JSON.parse(localStorage.getItem(CLASS_TARGET)) : [];
+    studentList = JSON.parse(localStorage.getItem(STUDENT_TARGET)) ? JSON.parse(localStorage.getItem(STUDENT_TARGET)) : [];
+    userSystems = JSON.parse(localStorage.getItem(accountManager)) ? JSON.parse(localStorage.getItem(accountManager)) : [];
 
     // 
     var courseTotalNum = courseList.length;

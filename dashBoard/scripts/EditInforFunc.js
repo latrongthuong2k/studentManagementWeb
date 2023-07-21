@@ -1,15 +1,14 @@
 //***************************************************
-var targetOverride = '';
 // Khi sửa thông tin sinh viên
 function editInfoStudent(catalogID) {
-    var studentList = JSON.parse(localStorage.getItem('studentList')) ? JSON.parse(localStorage.getItem('studentList')) : [];
+    var studentList = JSON.parse(localStorage.getItem(STUDENT_TARGET)) ? JSON.parse(localStorage.getItem(STUDENT_TARGET)) : [];
     let selectedStatus = document.getElementById('selectStatus');
     let inputGlobalClass = document.querySelectorAll('[type="text"]');
 
     var catalog = studentList.find(function (catalog) {
         return catalog.studentID === catalogID;
     });
-    targetOverride = catalog; // biến cục bộ targetOverride ở bên ngoài
+
     if (catalog != null) {
         popUpForm('edit', 'studentID');
         selectedStatus.value = catalog.Status;
@@ -52,14 +51,15 @@ function editInfoStudent(catalogID) {
         console.log('Danh mục không tồn tại.');
     }
 }
+////////////////////////////////
+
 function editInfoCourse(catalogID) {
-    var courseList = JSON.parse(localStorage.getItem('courseList')) ? JSON.parse(localStorage.getItem('courseList')) : [];
+    var courseList = JSON.parse(localStorage.getItem(COURSE_TARGET)) ? JSON.parse(localStorage.getItem(COURSE_TARGET)) : [];
     let selectedStatus = document.getElementById('selectStatus');
     let inputGlobalClass = document.querySelectorAll('[type="text"]');
     var catalog = courseList.find(function (catalog) {
         return catalog.CourseId === catalogID;
     });
-    targetOverride = catalog;
     if (catalog != null) {
         popUpForm('edit', 'CourseId');
         selectedStatus.value = catalog.Status;
@@ -81,15 +81,15 @@ function editInfoCourse(catalogID) {
         console.log('Danh mục không tồn tại.');
     }
 }
+////////////////////////////////
 function editInfoClass(catalogID) {
-    var classList = JSON.parse(localStorage.getItem('classList')) ? JSON.parse(localStorage.getItem('classList')) : [];
+    var classList = JSON.parse(localStorage.getItem(CLASS_TARGET)) ? JSON.parse(localStorage.getItem(CLASS_TARGET)) : [];
     let Descriptions = document.getElementById('descriptions');
     let Status = document.getElementById('selectStatus');
     let inputGlobalClass = document.querySelectorAll('[type="text"]');
     var catalog = classList.find(function (catalog) {
         return catalog.ClassId === catalogID;
     });
-    targetOverride = catalog;
     if (catalog != null) {
         popUpForm('edit', 'ClassId');
         Descriptions.value = catalog.Descriptions;

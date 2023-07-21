@@ -9,11 +9,15 @@ var studyClass = [];
 var studentList = [];
 
 // users
-userSystems = [
+var userSystems = [
 
-    { email: 'latrongthuong7@gmail.com', password: 'thuong191020', lockStatus: false, userName: 'Thuong' }
+    { email: 'admin@gmail.com', password: 'admin', isLocked: false, userName: 'admin' },
+    { email: 'user1@gmail.com', password: '1', isLocked: false, userName: 'User1' }
 
 ];
+var accountManager = 'accountManager';
+JSON.parse(localStorage.getItem(accountManager)) ? [] : localStorage.setItem(accountManager, JSON.stringify(userSystems));
+
 
 // pattern obj
 var newInformationStudent = {
@@ -31,9 +35,7 @@ var newInformationStudent = {
 var classRoom = {
     ClassId: '', ClassName: '', Descriptions: '', TotalNumber: '', Lecturer: '', Status: '', Students: []
 }
-var user = {
-    email: '', password: '', lockStatus: '', userName: ''
-}
+var user = { email: '', password: '', isLock: false, userName: '' };
 var course = { CourseId: '', CourseName: '', CourseTime: '', Status: '', Class: [] };
 
 
@@ -98,13 +100,12 @@ function patternTbodyUser(catalog = {}, index = 0) {
           <td>${catalog.email}</td>
           <td>${catalog.password}</td>
           <td>${catalog.userName}</td>
-          <td>${catalog.lockStatus}</td>
+          <td>${catalog.isLocked}</td>
           <td class="actionUser">
-              <button onclick=""><i
-                      class="fa-solid fa-lock-open"></i></button>
-              <button onclick="" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"><i
-                      class="fa-solid fa-lock"></i></i></button>
+              <button onclick="lockUser('${catalog.email}')"><i data-bs-toggle="modal" data-bs-target="#exampleModal"
+                      class="fa-solid fa-lock"></i></button>
+              <button onclick="unLockUser('${catalog.email}')" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                      class="fa-solid fa-lock-open"></i></i></button>
           </td>
         `
     return data;

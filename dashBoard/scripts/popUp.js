@@ -12,6 +12,7 @@ document.getElementById("Close").addEventListener("click", (e) => {
 
 // Thêm sinh viên
 function popUpForm(action, readOnlyElementNameID) {
+    // animation
     var boardAdd = document.getElementById("boardAdd");
     boardAdd.style.display = 'block';
     var coverBG = document.querySelector("#boardAdd .coverBG");
@@ -29,7 +30,6 @@ function popUpForm(action, readOnlyElementNameID) {
     var elementID = document.getElementById(readOnlyElementNameID);
     var buttonText = document.getElementById('finishAddInfo');
 
-    // 
     if (action === 'edit') {
         elementID.readOnly = true;
         elementID.style.backgroundColor = 'gray';

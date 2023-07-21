@@ -10,7 +10,7 @@ function checkInputClass(elementInput, action) {
     // Condition
     // Validate
     var isValid = true;
-    if (elementInput.id === 'ClassId' || elementInput.readOnly === false) {
+    if (elementInput.id === 'ClassId' && elementInput.readOnly === false) {
         if (elementInput.value === "") {
             elementInput.classList.remove('is-valid');
             elementInput.classList.add('is-invalid');
@@ -49,6 +49,9 @@ function checkInputClass(elementInput, action) {
             }
         }
     }
+    else if (elementInput.id === 'ClassId' && elementInput.readOnly === true) {
+        classRoom.ClassId = elementInput.value;
+    }
     //
     if (elementInput.id === 'ClassName') {
         if (elementInput.value === "") {
@@ -59,38 +62,19 @@ function checkInputClass(elementInput, action) {
             invalidFeedback.innerHTML = 'tên lớp không được để trống !';
             invalidFeedback.style.display = 'block';
             isValid = false;
-        } else {
-            var isExistingName = false;
-            for (var i = 0; i < currentTargetList.length; i++) {
-                if (currentTargetList[i].ClassName.replace(/\s/g, '') === elementInput.value.replace(/\s/g, '')) {
-                    isExistingName = true;
-                    break;
-                }
-            }
-            if (isExistingName) {
-                elementInput.classList.remove('is-valid');
-                elementInput.classList.add('is-invalid');
-                elementInput.style.backgroundColor = bgColorWarning;
-                let invalidFeedback = feelBackClassName.querySelector('.invalid-feedback');
-                feelBackClassName.querySelector('.valid-feedback').style.display = 'none';
-                invalidFeedback.innerHTML = ' Tên Lớp học đã tồn tại, xin vui lòng đặt tên khác !';
-                invalidFeedback.style.display = 'block';
-                isValid = false;
-
-            }
-            else {
-                elementInput.style.backgroundColor = '';
-                elementInput.classList.add('is-valid');
-                elementInput.classList.remove('is-invalid');
-                feelBackClassName.querySelector('.valid-feedback').style.display = 'block';
-                feelBackClassName.querySelector('.invalid-feedback').style.display = 'none';
-
-                classRoom.ClassName = elementInput.value;
-
-                isValid = true;
-            }
-
         }
+        else {
+            elementInput.style.backgroundColor = '';
+            elementInput.classList.add('is-valid');
+            elementInput.classList.remove('is-invalid');
+            feelBackClassName.querySelector('.valid-feedback').style.display = 'block';
+            feelBackClassName.querySelector('.invalid-feedback').style.display = 'none';
+
+            classRoom.ClassName = elementInput.value;
+
+            isValid = true;
+        }
+
     }
     //
     if (elementInput.id === 'TotalNumber') {

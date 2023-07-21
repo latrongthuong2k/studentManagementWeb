@@ -2,22 +2,20 @@
 addForm = document.getElementById('addForm');
 textFix = document.querySelector('.B');
 switch (currentTarget) {
-    case 'studentList':
+    case STUDENT_TARGET:
         addForm.innerHTML = studentInputPattern;
         textFix.innerHTML = 'Quản lý sinh viên';
         break;
-    case 'courseList':
+    case COURSE_TARGET:
         addForm.innerHTML = courseInputPattern;
         textFix.innerHTML = 'Quản lý khoá học';
         break;
-    case 'classList':
+    case CLASS_TARGET:
         addForm.innerHTML = classInputPattern;
         textFix.innerHTML = 'Quản lý lớp học';
         break;
-    case 'userSystems':
+    case accountManager:
         textFix.innerHTML = 'Quản lý Users';
-        break;
-    case 'DashBoard':
         break;
 }
 

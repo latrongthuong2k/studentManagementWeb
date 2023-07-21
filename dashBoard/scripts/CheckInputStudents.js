@@ -54,9 +54,11 @@ function checkInputStudent(elementInput, action) {
                 isValid = true;
             }
         }
+    } else if (elementInput.id === 'studentID' && elementInput.readOnly === true) {
+        newInformationStudent.studentID = elementInput.value;
     }
     //
-    if (elementInput.id === 'name' && elementInput.readOnly === false) {
+    if (elementInput.id === 'name') {
         if (elementInput.value === "") {
             elementInput.classList.remove('is-valid');
             elementInput.classList.add('is-invalid');

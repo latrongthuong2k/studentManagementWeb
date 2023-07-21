@@ -10,7 +10,6 @@ function checkInputCourse(elementInput, action) {
     var isValid = true;
     // Validate trường CourseId
     if (elementInput.id === 'CourseId' && elementInput.readOnly === false) {
-        debugger
         if (elementInput.value === "") {
             elementInput.classList.remove('is-valid');
             elementInput.classList.add('is-invalid');
@@ -51,7 +50,10 @@ function checkInputCourse(elementInput, action) {
                 isValid = true;
             }
         }
+    } else if (elementInput.id === 'CourseId' && elementInput.readOnly === true) {
+        course.CourseId = elementInput.value;
     }
+
     //
     if (elementInput.id === 'CourseName') {
         if (elementInput.value === "") {
@@ -64,37 +66,16 @@ function checkInputCourse(elementInput, action) {
             isValid = false;
 
         } else {
-            var isExistingName = false;
-            for (var i = 0; i < currentTargetList.length; i++) {
-                if (currentTargetList[i].CourseName.replace(/\s/g, '') === elementInput.value.replace(/\s/g, '')) {
-                    isExistingName = true;
-                    break;
-                }
-            }
-            if (isExistingName) {
-                elementInput.classList.remove('is-valid');
-                elementInput.classList.add('is-invalid');
-                elementInput.style.backgroundColor = bgColorWarning;
-                var invalidFeedback = feelBackCourseName.querySelector('.invalid-feedback');
-                feelBackCourseName.querySelector('.valid-feedback').style.display = 'none';
-                invalidFeedback.innerHTML = 'Tên khoá học đã tồn tại, xin vui lòng đặt tên khác !';
-                invalidFeedback.style.display = 'block';
-                isValid = false;
-
-            }
-            else {
-                elementInput.style.backgroundColor = '';
-                elementInput.classList.add('is-valid');
-                elementInput.classList.remove('is-invalid');
-                feelBackCourseName.querySelector('.valid-feedback').style.display = 'block';
-                feelBackCourseName.querySelector('.invalid-feedback').style.display = 'none';
+            elementInput.style.backgroundColor = '';
+            elementInput.classList.add('is-valid');
+            elementInput.classList.remove('is-invalid');
+            feelBackCourseName.querySelector('.valid-feedback').style.display = 'block';
+            feelBackCourseName.querySelector('.invalid-feedback').style.display = 'none';
 
 
-                course.CourseName = elementInput.value;
+            course.CourseName = elementInput.value;
 
-                isValid = true;
-            }
-
+            isValid = true;
         }
     }
     //

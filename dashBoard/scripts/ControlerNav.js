@@ -12,10 +12,10 @@ items.forEach(item => {
     if (item.id === 'Course' && currentTarget === COURSE_TARGET) {
         changeStyle(item);
     }
-    if (item.id === 'Users' && currentTarget === USER_TARGET) {
+    if (item.id === 'Students' && currentTarget === STUDENT_TARGET) {
         changeStyle(item);
     }
-    if (item.id === 'Students' && currentTarget === STUDENT_TARGET) {
+    if (item.id === 'Users' && currentTarget === accountManager) {
         changeStyle(item);
     }
 
@@ -54,7 +54,6 @@ function changePage(item) {
             switch (button.id) {
                 case "Course":
                     button.addEventListener("click", (e) => {
-                        // e.preventDefault();
                         currentTarget = COURSE_TARGET;
                         localStorage.setItem('currentTarget', JSON.stringify(currentTarget));
                         window.location.href = "../Html/CourseListPage.html";
@@ -62,7 +61,6 @@ function changePage(item) {
                     break;
                 case "Class":
                     button.addEventListener("click", (e) => {
-                        // e.preventDefault();
                         currentTarget = CLASS_TARGET;
                         localStorage.setItem('currentTarget', JSON.stringify(currentTarget));
                         window.location.href = "../Html/ClassListPage.html";
@@ -71,7 +69,6 @@ function changePage(item) {
                     break;
                 case "Students":
                     button.addEventListener("click", (e) => {
-                        // e.preventDefault();
                         currentTarget = STUDENT_TARGET;
                         localStorage.setItem('currentTarget', JSON.stringify(currentTarget));
                         window.location.href = "../Html/StudentsListPage.html";
@@ -80,8 +77,7 @@ function changePage(item) {
                     break;
                 case "Users":
                     button.addEventListener("click", (e) => {
-                        // e.preventDefault();
-                        currentTarget = USER_TARGET;
+                        currentTarget = accountManager;
                         localStorage.setItem('currentTarget', JSON.stringify(currentTarget));
                         window.location.href = "../Html/UsersListPage.html";
                     });

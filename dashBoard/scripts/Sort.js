@@ -11,23 +11,21 @@ function sortList(list, sortOrder = 1) {
         var aId, bId;
 
         switch (currentTarget) {
-            case 'studentList':
+            case STUDENT_TARGET:
                 aId = a.studentID;
                 bId = b.studentID;
                 break;
-            case 'courseList':
+            case COURSE_TARGET:
                 aId = a.CourseId;
                 bId = b.CourseId;
                 break;
-            case 'classList':
+            case CLASS_TARGET:
                 aId = a.ClassId;
                 bId = b.ClassId;
                 break;
-            case 'userSystems':
+            case accountManager:
                 aId = a.email;
                 bId = b.email;
-                break;
-            case 'DashBoard':
                 break;
         }
 
