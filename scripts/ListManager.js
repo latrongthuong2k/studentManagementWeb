@@ -41,7 +41,12 @@ function handleCourseSelection() {
     if (course != null) {
         for (let i = 0; i < renderList.length; i++) {
             if (renderList[i].CourseId === course.CourseId) {
-                localStorage.setItem(CLASS_TARGET, JSON.stringify(renderList[i].Class));
+                if (renderList[i].Class.length != 0)
+                    localStorage.setItem(CLASS_TARGET, JSON.stringify(renderList[i].Class));
+                else {
+                    const nullArray = [];
+                    localStorage.setItem(STUDENT_TARGET, JSON.stringify(nullArray));
+                }
             }
         }
     } else {
@@ -81,9 +86,13 @@ function renderClassOptionsOfCourse() {
 
 // Hàm xử lý khi chọn một lớp học
 function handleClassSelection() {
-    const classList = selectedOptionCourse;
+    const course = selectedOptionCourse;
     const selectedOptionId = document.getElementById('select-class').value;
-    const classItem = classList.Class.find(Obj => Obj.ClassId === selectedOptionId);
+    const classItem = course.Class.find(Obj => Obj.ClassId === selectedOptionId);
+    if (classItem === undefined) {
+        renderCatalogs();
+        return;
+    }
     dText.innerHTML = classItem.ClassName;
     // selected Class data
     selectedOptionClassOfCourse = classItem;
