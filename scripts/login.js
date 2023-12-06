@@ -1,4 +1,8 @@
 var isLoginAccount = { email: '', password: '' };
+var validAcc = [
+    { email: 'admin', password: 'admin', isLocked : false },
+    { email: 'user', password: 'user',isLocked : false }
+];
 const dataList = JSON.parse(localStorage.getItem(accountManager));
 function CheckAdmin(e) {
     e.preventDefault();
@@ -6,7 +10,7 @@ function CheckAdmin(e) {
     var password = document.getElementById('password').value;
     var boxChecks = document.querySelectorAll('.boxCheck');
     //  account đã đăng ký ở bên scripts changeTarget 
-    dataList.forEach(account => {
+    validAcc.forEach(account => {
         // push và đi qua trang dashboard
         if (account.email === email && account.password === password && account.isLocked === false) {
             isLoginAccount.email = account.email;
