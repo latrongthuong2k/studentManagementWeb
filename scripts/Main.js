@@ -24,7 +24,7 @@ var selectedOptionClassOfCourse = [];
 // đăng xuất button
 document.getElementById("logOutBtn").addEventListener("click", () => {
     localStorage.removeItem('isLoginAccount');
-    window.location.href = "../Html/index.html";
+    window.location.href = "../index.html";
 });
 
 // cài đặt ban đầu cho trường feel back

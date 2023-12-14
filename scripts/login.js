@@ -16,7 +16,7 @@ function CheckAdmin(e) {
             isLoginAccount.email = account.email;
             isLoginAccount.password = account.password;
             localStorage.setItem('isLoginAccount', JSON.stringify(isLoginAccount));
-            window.location.href = "../Html/DashBoard.html";
+            window.location.href = "../html/DashBoard.html";
             currentTarget = 'DashBoard';
             localStorage.setItem('currentTarget', JSON.stringify(currentTarget));
         }
@@ -53,7 +53,7 @@ function checkLogin() {
         return;
     else {
         currentTarget = 'DashBoard';
-        window.location.href = "../Html/DashBoard.html";
+        window.location.href = "../html/DashBoard.html";
         // 
     }
 

@@ -46,7 +46,7 @@ function changePage(item) {
                 // e.preventDefault();
                 currentTarget = DASHBOARD;
                 localStorage.setItem('currentTarget', JSON.stringify(currentTarget));
-                window.location.href = "../Html/DashBoard.html";
+                window.location.href = "../html/DashBoard.html";
 
             });
         } else {
@@ -56,14 +56,14 @@ function changePage(item) {
                     button.addEventListener("click", (e) => {
                         currentTarget = COURSE_TARGET;
                         localStorage.setItem('currentTarget', JSON.stringify(currentTarget));
-                        window.location.href = "../Html/CourseListPage.html";
+                        window.location.href = "../html/CourseListPage.html";
                     });
                     break;
                 case "Class":
                     button.addEventListener("click", (e) => {
                         currentTarget = CLASS_TARGET;
                         localStorage.setItem('currentTarget', JSON.stringify(currentTarget));
-                        window.location.href = "../Html/ClassListPage.html";
+                        window.location.href = "../html/ClassListPage.html";
 
                     });
                     break;
@@ -71,7 +71,7 @@ function changePage(item) {
                     button.addEventListener("click", (e) => {
                         currentTarget = STUDENT_TARGET;
                         localStorage.setItem('currentTarget', JSON.stringify(currentTarget));
-                        window.location.href = "../Html/StudentsListPage.html";
+                        window.location.href = "../html/StudentsListPage.html";
 
                     });
                     break;
@@ -79,7 +79,7 @@ function changePage(item) {
                     button.addEventListener("click", (e) => {
                         currentTarget = accountManager;
                         localStorage.setItem('currentTarget', JSON.stringify(currentTarget));
-                        window.location.href = "../Html/UsersListPage.html";
+                        window.location.href = "../html/UsersListPage.html";
                     });
                     break;
             }

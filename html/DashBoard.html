@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UserListPage</title>
+    <title>Dashboard quản trị</title>
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -17,7 +17,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;500&family=Noto+Sans+JP:wght@300;500&family=Roboto:ital,wght@0,100;0,300;0,500;1,100&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../Css/dashboard.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 
 <body>
@@ -25,7 +25,7 @@
         <!-- Control -->
         <section class="control">
             <div class="head-Control">
-                <img src="../Assets/Ellipse 6.png" srcset="../Assets/Ellipse 6.png 2x" alt="">
+                <img src="../assets/Ellipse 6.png" srcset="../assets/Ellipse 6.png 2x" alt="">
                 <p>Rikkei Academy</p>
             </div>
             <span class="line"></span>
@@ -36,15 +36,15 @@
                         <div class="customIcon2">
                             <i class="fa-regular fa-rectangle-list"></i>
                         </div>
-                        <p class="text">Dashboard</p>
+                        <p class="text">DashBoard</p>
                         <i class="fa-solid fa-chevron-right customIcon"></i>
                     </div>
                     <div id="Course" class="item">
-                        <!-- <img src="./assets/    icon2.png" srcset="./assets/icon2.png 2x" alt="icon"> -->
+                        <!-- <img src="./assets/icon2.png" srcset="./assets/icon2.png 2x" alt="icon"> -->
                         <div class="customIcon2">
                             <i class="fa-regular fa-file-code"></i>
                         </div>
-                        <p class="text">Quản lý khoá học</p>
+                        <p class="text">Quản lý khóa học</p>
                         <i class="fa-solid fa-chevron-right customIcon"></i>
                     </div>
                     <div id="Class" class="item">
@@ -90,11 +90,57 @@
             </div>
             <!-- Render Point -->
             <!-- ---------------------------------------------- -->
-            <div id="content-Body-2">
+            <div id="content-Body">
+                <div class="title">
+                    <h2>Chào mừng đến trang quản trị , Rekkei Academy</h2>
+                    <h4>Đà Nẵng-Hà Nội- TP.HCM-FUKOUKA</h4>
+                </div>
+                <div class="informationDetail">
+                    <div class="item">
+                        <div class="icon">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div>
+                            <h3>Thông tin khóa học</h3>
+                            <p>Số lượng khóa học hiện tại là : <span class="NumberTotal" id="courseTotal"></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="icon">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+                        <div>
+                            <h3>Thông tin lớp học</h3>
+                            <p>Số lượng lớp học hiện tại là : <span class="NumberTotal" id="classTotal"></span>
+                            <p>Số lớp đang hoạt động : <span class="NumberTotal" id="activeClass"></span>
+                            <p>Số lớp đã kết thúc : <span class="NumberTotal" id="inactiveClass"></span>
+                            <p>Số lớp đang chờ: : <span class="NumberTotal" id="waitingClass"></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="icon">
+                            <i class="fa-sharp fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h3>Thông tin sinh viên</h3>
+                            <p>Tổng số SV : <span class="NumberTotal" id="studentTotal"></span></p>
+                            <p>Số SV chờ lớp : <span class="NumberTotal" id="studentWaiting"></span></p>
+                            <p>Số SV đang học : <span class="NumberTotal" id="activeStudent"></span>
+                            <p>Số SV bảo lưu/đình chỉ : <span class="NumberTotal" id="inactiveStudent"></span>
+                            <p>Số SV tốt nghiệp : <span class="NumberTotal" id="graduated"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="content-Body-2" style="display: none;">
                 <div class="Box-1">
                     <div>
-                        <p class="A">RikkeiAcademy<span class="slack">/</span><span class="B"></span>
-                        </p>
+                        <p class="A">RikkeiAcademy<span class="slack">/</span><span class="B"></span></p>
+                    </div>
+                    <div>
+                        <button type="button" id="addBtn">Thêm sinh viên</button>
                     </div>
                 </div>
                 <div class="Box-2">
@@ -105,8 +151,9 @@
                     <div class="nav">
                         <!-- emptyPage -->
                         <div id="emptyTable" style="display: none;">
-                            <img src="../Assets/noNotification.png" srcset="../Assets/noNotification.png 2x" alt="">
-                            <h3>Không có người dùng nào :(</h3>
+                            <img src="../assets/noNotification.png" srcset="../assets/noNotification.png 2x" alt="">
+                            <h3>Không có <span>sinh viên</span> nào :(</h3>
+                            <p>Hãy thêm sinh viên vào <span></span> Rikkei Academy nào <3 </p>
                         </div>
                         <div id="renderedTable" class="renderedTable"
                             style=" width: 100%; height: 70vh; margin-top: 15px;">
@@ -115,31 +162,9 @@
                                 <table id="tableBody">
                                     <!-- studentsPage -->
                                     <thead>
-                                        <tr>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                        STT
-                                                    </a>
 
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" onclick="sortFunc()" href="#">Sắp
-                                                                xếp tăng dần</a></li>
-                                                        <li><a class="dropdown-item" onclick="sortFunc(-1)" href="#">Sắp
-                                                                xếp giảm dần</a></li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                            <td>Email </td>
-                                            <td>Mật khẩu </td>
-                                            <td>Họ và tên </td>
-                                            <td>Trạng thái khoá </td>
-                                            <td style=" text-align: center;">Action</td>
-                                        </tr>
                                     </thead>
                                     <tbody>
-
                                     </tbody>
                                     <!-- classPage -->
 
@@ -180,7 +205,27 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            Bạn có chắc thực hiện hành động <span class="nameStudent"></span> này không ?
+                            Xin nhắc lại, bạn có thực sự muốn xóa sinh viên <span class="nameStudent"></span> không ?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="No" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Không</button>
+                            <button type="button" id="Yes" class="btn btn-success" data-bs-dismiss="modal">Có</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal-2" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title fs-5" id="exampleModalLabel"></h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" id="No" class="btn btn-secondary"
@@ -208,25 +253,13 @@
 
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/eca9d5c25e.js" crossorigin="anonymous"></script>
-
-    <!----------- script Load ------------>
-    <!-- Base -->
-    <script src="../scripts/changeTarget.js"></script>
-    <!-- Level 1 -->
-    <script src="../scripts/Main.js"></script>
-    <script src="../scripts/loadTarget.js"></script>
-    <!-- level 2 -->
-    <script src="../scripts/RenderCatalog.js"></script>
-    <script src="../scripts/SearchInfo.js"></script>
-    <script src="../scripts/ControlerNav.js"></script>
-    <script src="../scripts/UserAction.js"></script>
-
-    <!------------------------------------>
-    <!-- Hàm gọi đến khi load event -->
+    <!-- script changeTarget -->
+    <!-- script Main -->
     <!--  -->
-    <script src="../scripts/Sort.js"></script>
-    <script src="../scripts/FormatFunc.js"></script>
-
+    <script src="../scripts/changeTarget.js"></script>
+    <script src="../scripts/Main.js"></script>
+    <script src="../scripts/DashBoard.js"></script>
+    <script src="../scripts/ControlerNav.js"></script>
 </body>
 
 </html>
